@@ -21,6 +21,10 @@ const Product = sequelizeDb.define("product", {
     type: Sequelize.TEXT,
     allowNull: false,
   },
+  image: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
   isEnable: {
     type: Sequelize.BOOLEAN,
     defaultValue: true,

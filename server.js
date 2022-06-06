@@ -1,3 +1,5 @@
+const path = require("path");
+
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
@@ -7,9 +9,12 @@ const sequelizeDb = require("./util/database");
 const User = require("./models/UserModel");
 const Product = require("./models/ProductModel");
 
+const authRoutes = require("./routes/authRoutes");
+const productRoues = require("./routes/productRoutes");
+
 sequelizeDb
-  //   .sync()
-  .sync({ force: true })
+  .sync()
+  //   .sync({ force: true })
   .then(() => {
     console.log("Connection has been established successfully.");
   })
@@ -21,9 +26,11 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use("/uploads", express.static(path.join("uploads")));
 
 // ALL ROUTES
-
+app.use("/api/user", authRoutes);
+app.use("/api/product", productRoues);
 app.use((req, res, next) => {
   res.status(404).json({ message: "Couldn't found this page!" });
 });
