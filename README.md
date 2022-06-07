@@ -149,7 +149,7 @@ http://localhost:5000/api/product/disable/2
 
 ### Delete product
 
-PATCH
+DELETE
 
 ```url
 http://localhost:5000/api/product/2

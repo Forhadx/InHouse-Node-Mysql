@@ -23,6 +23,7 @@ app.use((req, res, next) => {
 
 const PORT = process.env.PORT;
 
+//ASSOCIATIONS
 Product.belongsTo(User);
 User.hasMany(Product);
 

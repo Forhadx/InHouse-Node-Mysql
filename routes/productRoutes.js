@@ -13,7 +13,7 @@ const validationRules = [
     .isString()
     .trim()
     .isLength({ min: 3, max: 30 }),
-  body("price", "enter valid product price! minimum price 10")
+  body("price", "enter valid product price! minimum price range 10")
     .isNumeric()
     .trim()
     .isFloat({ min: 10 }),
