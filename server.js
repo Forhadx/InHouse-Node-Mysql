@@ -27,8 +27,8 @@ Product.belongsTo(User);
 User.hasMany(Product);
 
 sequelizeDb
-  // .sync()
-  .sync({ force: true })
+  .sync()
+  // .sync({ force: true })
   .then(() => {
     app.listen(PORT);
     console.log(`SERVER START AT: ${PORT}`);

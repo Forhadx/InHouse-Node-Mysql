@@ -1,10 +1,10 @@
 # Mini In-House Syestem with two type user
 
-There is two type user 'admin' and 'employee' which data store in User DB and Product Db store all products details.
+There are two types of users 'admin' and 'employee' whose data is stored in User DB and Product Db stores all product details.
 
 ## Installation
 
-Download the code and user the command.
+Download the code and use the command.
 
 ```bash
 npm install
@@ -14,18 +14,49 @@ npm install
 
 ### User model
 
-| Entity      | Conditions                                              |
-| ----------- | ------------------------------------------------------- |
-| \_ username | must be unique and string value. Length min 6 & max 12. |
-| \_ password | password length min 6 and max 32.                       |
-| \_ role     | role will be 'admin' or 'employee'                      |
+| Entity   | Conditions                                              |
+| -------- | ------------------------------------------------------- |
+| username | must be unique and string value. Length min 6 & max 12. |
+| password | password length min 6 and max 32.                       |
+| role     | role will be 'admin' or 'employee'                      |
 
 ### Product model
 
-| Entity         | Conditions                                  |
-| -------------- | ------------------------------------------- |
-| \_ name        | must bestring value. Length min 3 & max 30. |
-| \_ price       | minimum price range 10.                     |
-| \_ description | must bestring value. Length min 10.         |
-| \_ isEnable    | default value is true.                      |
-| \_ image       | image must be 'png', 'jpeg', 'jpg' format   |
+| Entity      | Conditions                                  |
+| ----------- | ------------------------------------------- |
+| name        | must bestring value. Length min 3 & max 30. |
+| price       | minimum price range 10.                     |
+| description | must bestring value. Length min 10.         |
+| isEnable    | default value is true.                      |
+| image       | image must be 'png', 'jpeg', 'jpg' format   |
+
+## All Rest-api routes
+
+There are two type of routes. Auth routes and Product routes.
+
+### Signup auth
+
+```url
+http://localhost:5000/api/user/signup
+```
+
+```json
+{
+  "username": "forhad",
+  "password": "123456",
+  "role": "admin"
+}
+```
+
+### Login auth
+
+```url
+http://localhost:5000/api/user/login
+```
+
+```json
+{
+  "username": "forhad",
+  "password": "123456"
+}
+```
