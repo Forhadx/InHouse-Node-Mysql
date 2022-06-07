@@ -36,6 +36,8 @@ There are two type of routes. Auth routes and Product routes.
 
 ### Signup auth
 
+POST
+
 ```url
 http://localhost:5000/api/user/signup
 ```
@@ -50,6 +52,8 @@ http://localhost:5000/api/user/signup
 
 ### Login auth
 
+POST
+
 ```url
 http://localhost:5000/api/user/login
 ```
@@ -59,4 +63,94 @@ http://localhost:5000/api/user/login
   "username": "forhad",
   "password": "123456"
 }
+```
+
+### Fetch product
+
+GET
+
+```url
+http://localhost:5000/api/product?page=1
+```
+
+```json
+{
+    "message": "Fetch page 1 products successfully.",
+    "products": {
+        "count": 2,
+        "rows": [
+            {
+                "id": 1,
+                "name": "aaaaaaaa",
+                "price": 111,
+                "description": "abcdeasdasdfsdf4",
+                "image": "uploads/beb2d0e6-42e9-4c67-8b89-90c7e5332fc7.jpeg",
+                "isEnable": true,
+                "createdAt": "2022-06-07T12:46:48.000Z",
+                "updatedAt": "2022-06-07T12:46:48.000Z",
+                "userId": 1
+            },
+            ...
+        ]
+    },
+    "currentPage": "1"
+}
+```
+
+### Create product
+
+POST
+
+```url
+http://localhost:5000/api/product
+```
+
+```json
+{
+  "name": "aaaaaaaa",
+  "price": 111,
+  "description": "abcdeasdasdfsdf4",
+  "image": "uploads/beb2d0e6-42e9-4c67-8b89-90c7e5332fc7.jpeg"
+}
+```
+
+### Update product
+
+PATCH
+
+```url
+http://localhost:5000/api/product
+```
+
+```json
+{
+  "name": "aaaaaaaa",
+  "price": 111,
+  "description": "abcdeasdasdfsdf4",
+  "image": "uploads/beb2d0e6-42e9-4c67-8b89-90c7e5332fc7.jpeg"
+}
+```
+
+### Enable product
+
+PATCH
+
+```url
+http://localhost:5000/api/product/enable/2
+```
+
+### Disable product
+
+PATCH
+
+```url
+http://localhost:5000/api/product/disable/2
+```
+
+### Delete product
+
+PATCH
+
+```url
+http://localhost:5000/api/product/2
 ```

@@ -14,7 +14,7 @@ const fetchProducts = async (req, res, next) => {
       res.status(404).json({ message: "Couldn't found products!" });
     }
     res.status(200).json({
-      message: `Fetch ${currentPage} page products successfully.`,
+      message: `Fetch page ${currentPage} products successfully.`,
       products: products,
       currentPage: currentPage,
     });
