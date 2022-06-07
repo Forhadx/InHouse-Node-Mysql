@@ -14,11 +14,11 @@ const verifyToken = async (req, res, next) => {
     const decoded = jwt.verify(token, process.env.SECRET_KEY);
     const user = await User.findByPk(decoded.userId);
     if (!user) {
-      return res.status(422).json({ message: "Unauthoraize token!" });
+      return res.status(401).json({ message: "Unauthoraize token!" });
     }
     req.user = user;
   } catch (err) {
-    return res.json(401).send("Invalid Token");
+    return res.json(403).send("Invalid Token");
   }
   return next();
 };

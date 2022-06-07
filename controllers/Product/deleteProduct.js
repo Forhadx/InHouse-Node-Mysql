@@ -7,11 +7,11 @@ const deleteProduct = async (req, res, next) => {
     const pId = req.params.pId;
     let product = await Product.findByPk(pId);
     if (!product) {
-      return res.status(422).res({ json: "Product couldn't found!" });
+      return res.status(404).res({ json: "Product couldn't found!" });
     }
     clearImage(product.image);
     await Product.destroy({ where: { id: pId } });
-    res.status(201).json({ message: "Product deleted successfully." });
+    res.status(200).json({ message: "Product deleted successfully." });
   } catch (err) {
     res.status(500).json({ message: "Couldn't delete products! Try again." });
   }

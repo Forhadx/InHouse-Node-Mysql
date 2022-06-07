@@ -2,7 +2,7 @@ const Product = require("../../models/ProductModel");
 
 //===== FETCH PRODUCTS =====
 const fetchProducts = async (req, res, next) => {
-  const currentPage = req.query.page || 0;
+  const currentPage = req.query.page || 1;
   const PAGE_SIZE = 5;
   try {
     const products = await Product.findAndCountAll({
@@ -11,15 +11,15 @@ const fetchProducts = async (req, res, next) => {
       offset: PAGE_SIZE * (currentPage - 1),
     });
     if (!products) {
-      res.status(500).json({ message: "Couldn't found products. Try again." });
+      res.status(404).json({ message: "Couldn't found products!" });
     }
     res.status(200).json({
-      message: "Fetch all products successfully.",
+      message: `Fetch ${currentPage} page products successfully.`,
       products: products,
       currentPage: currentPage,
     });
   } catch (err) {
-    res.status(500).json({ message: "Couldn't fetch products. Try again." });
+    res.status(500).json({ message: "Couldn't fetch products! Try again." });
   }
 };
 

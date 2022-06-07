@@ -12,7 +12,7 @@ const updateProduct = async (req, res, next) => {
     }
     let product = await Product.findByPk(id);
     if (!product) {
-      return res.status(422).res({ json: "Product couldn't found!" });
+      return res.status(404).res({ json: "Product couldn't found!" });
     }
     let imagePath = image;
     if (req.file) {
@@ -24,7 +24,7 @@ const updateProduct = async (req, res, next) => {
     product.description = description;
     product.image = imagePath;
     await product.save();
-    res.status(201).json({
+    res.status(202).json({
       message: "Updated product successfully.",
       product: product,
     });

@@ -10,11 +10,11 @@ const addProduct = async (req, res, next) => {
     }
     const { name, price, description } = req.body;
     if (!req.file) {
-      return res.status(422).res({ json: "Product image not found!" });
+      return res.status(404).res({ json: "Product image not found!" });
     }
     let imagePath = "";
     imagePath = req.file.path.replace(/\\/g, "/");
-    const product = await Product.create({
+    const product = await req.user.createProduct({
       name,
       price,
       description,

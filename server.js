@@ -1,29 +1,15 @@
 const path = require("path");
-
 const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
 const sequelizeDb = require("./util/database");
-
 const User = require("./models/UserModel");
 const Product = require("./models/ProductModel");
-
 const authRoutes = require("./routes/authRoutes");
 const productRoues = require("./routes/productRoutes");
 
-sequelizeDb
-  .sync()
-  //   .sync({ force: true })
-  .then(() => {
-    console.log("Connection has been established successfully.");
-  })
-  .catch((err) => {
-    console.error("Unable to connect to the database:", err);
-  });
-
 const app = express();
-
 app.use(express.json());
 app.use(cors());
 app.use("/uploads", express.static(path.join("uploads")));
@@ -36,6 +22,17 @@ app.use((req, res, next) => {
 });
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`SERVER START AT: ${PORT}`);
-});
+
+Product.belongsTo(User);
+User.hasMany(Product);
+
+sequelizeDb
+  // .sync()
+  .sync({ force: true })
+  .then(() => {
+    app.listen(PORT);
+    console.log(`SERVER START AT: ${PORT}`);
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });

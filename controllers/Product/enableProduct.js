@@ -7,12 +7,12 @@ const enableProduct = async (req, res, next) => {
 
     let product = await Product.findByPk(pId);
     if (!product) {
-      return res.status(422).res({ json: "Product couldn't found!" });
+      return res.status(404).res({ json: "Product couldn't found!" });
     }
     product.isEnable = true;
     await product.save();
 
-    res.status(201).json({
+    res.status(202).json({
       message: "Product enable successfully.",
       product: product,
     });

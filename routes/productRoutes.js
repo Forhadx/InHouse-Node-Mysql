@@ -24,20 +24,20 @@ const validationRules = [
 ];
 
 // All PRODUCT ROUTES
-// FETCH
+//==== FETCH ====
 router.get("/", IsAuth, productController.fetchProducts);
 
-// ADD
+//==== ADD ====
 router.post(
   "/",
   IsAuth,
-  //   isAdmin,
+  isAdmin,
   fileUpload.single("image"),
   validationRules,
   productController.addProduct
 );
 
-// UPDATE
+//==== UPDATE ====
 router.patch(
   "/",
   IsAuth,
@@ -47,13 +47,13 @@ router.patch(
   productController.updateProduct
 );
 
-// ENABLE
+//==== ENABLE ====
 router.patch("/enable/:pId", IsAuth, isAdmin, productController.enableProduct);
 
-// DISABLE
+//==== DISABLE ====
 router.patch("/disable/:pId", IsAuth, isAdmin, productController.disbleProduct);
 
-// DELETE
+//==== DELETE ====
 router.delete("/:pId", IsAuth, isAdmin, productController.deleteProduct);
 
 module.exports = router;
