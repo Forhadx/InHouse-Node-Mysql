@@ -6,6 +6,7 @@ const User = require("../models/UserModel");
 
 const router = express.Router();
 
+// SIGNUP USER
 router.post(
   "/signup",
   [
@@ -28,6 +29,7 @@ router.post(
   AuthController.userSignup
 );
 
+// LOGIN USER
 router.post(
   "/login",
   [

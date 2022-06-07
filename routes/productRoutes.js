@@ -3,6 +3,8 @@ const { body } = require("express-validator");
 
 const productController = require("../controllers/Product/productController");
 const fileUpload = require("../middleware/fileUrl");
+const IsAuth = require("../middleware/is-auth");
+const isAdmin = require("../middleware/is-admin");
 
 const router = express.Router();
 
@@ -23,11 +25,13 @@ const validationRules = [
 
 // All PRODUCT ROUTES
 // FETCH
-router.get("/", productController.fetchProducts);
+router.get("/", IsAuth, productController.fetchProducts);
 
 // ADD
 router.post(
   "/",
+  IsAuth,
+  //   isAdmin,
   fileUpload.single("image"),
   validationRules,
   productController.addProduct
@@ -36,18 +40,20 @@ router.post(
 // UPDATE
 router.patch(
   "/",
+  IsAuth,
+  isAdmin,
   fileUpload.single("image"),
   validationRules,
   productController.updateProduct
 );
 
 // ENABLE
-router.patch("/enable/:pId", productController.enableProduct);
+router.patch("/enable/:pId", IsAuth, isAdmin, productController.enableProduct);
 
 // DISABLE
-router.patch("/disable/:pId", productController.disbleProduct);
+router.patch("/disable/:pId", IsAuth, isAdmin, productController.disbleProduct);
 
 // DELETE
-router.delete("/:pId", productController.deleteProduct);
+router.delete("/:pId", IsAuth, isAdmin, productController.deleteProduct);
 
 module.exports = router;
